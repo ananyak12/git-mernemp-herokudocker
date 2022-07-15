@@ -2,8 +2,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 //const session = require('express-session');
+mongoose.connect('mongodb://localhost/Rchatbot', {useNewUrlParser: true})
+var collection1,collection2,collection3,collection4,collection5,collection6,collection7,collection8;
+/*const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://chatbot123:chatbot123@cluster0.9s9jx.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  collection1 = client.db("Rchatbot").collection("cls");
+  collection2 = client.db("Rchatbot").collection("ql1");
+  collection3 = client.db("Rchatbot").collection("ql2");
+  collection4 = client.db("Rchatbot").collection("ql3");
+  collection5 = client.db("Rchatbot").collection("ql4");
+  collection6 = client.db("Rchatbot").collection("ql5");
+  collection7 = client.db("Rchatbot").collection("qls");
+  collection8 = client.db("Rchatbot").collection("userlists");
+  collection9 = client.db("Rchatbot").collection("loglists");
+  // perform actions on the collection object
+  client.close();
+});
+*/
 
-mongoose.connect('mongodb://localhost/Rchatbot', {useNewUrlParser: true});
+const db = mongoose.connection
+module.exports = db;
 var app = express();
 app.use(express.static(__dirname+'/views/'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -119,7 +139,7 @@ app.get('/' ,function(req,res){
     res.render('india', {items:items,categories:categories,questions:questions,questions1:questions1,questions2:questions2,questions3:questions3,questions4:questions4,questions5:questions5});
     return;
   }
-  else{
+  else {
     res.render('india',{items:items,categories:categories,questions:questions,questions1:questions1,questions2:questions2,questions3:questions3,questions4:questions4,questions5:questions5});
   }
 
